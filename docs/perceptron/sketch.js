@@ -13,16 +13,16 @@ function setup() {
 
 	// Generate dots
 	for (var i = 0; i < num_points; i++) {
-		dot1 = new Dot(color(255, 0, 0), 1);
+		dot1 = new Dot(color(0, 0, 255), 1);
 		dots.push(dot1);
-		dot2 = new Dot(color(0, 0, 255), -1);
+		dot2 = new Dot(color(255, 0, 0), -1);
 		dots.push(dot2);
 	}
 }
 
 	function draw() {
-	background(200, 200, 255);	// negative - blue
-	decision_boundary();		// positive - red
+	background(200, 200, 255);	// positive - blue
+	decision_boundary();		// negative - red
 
 	if (dragging && active_dot !== -1) {
 		dots[active_dot].pos.x = mouseX - siz / 2;
@@ -45,9 +45,9 @@ function decision_boundary() {
 	push();
 	translate(siz / 2, siz / 2);
 	
-	// Draw positive region
+	// Draw negative region
 	noStroke();
-	fill(255, 200, 200);	// positive - red
+	fill(255, 200, 200);
 	beginShape();
 	// Check for vertical line
 	if (w.y === 0) {	
