@@ -24,6 +24,7 @@ function draw() {
 	background(0, 0, 78);
 
 	draw_axes();
+	regression_line();
 
 	if (dragging && active_dot !== -1) {
 		dots[active_dot].pos.x = xinvscale(mouseX);

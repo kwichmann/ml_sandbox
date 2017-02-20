@@ -45,7 +45,7 @@ function set_active() {
 
 	// Set the first dot (if any) close to the cursor to be active
 	for (var i = 0; i < dots.length; i++) {	
-		if (dist(mouseX, mouseY, xscale(dots[i].pos.x), yscale(dots[i].pos.y)) <= scal) {
+		if (dist(mouseX, mouseY, xscale(dots[i].pos.x), yscale(dots[i].pos.y)) <= inactive_size) {
 			dots[i].active = true;
 			active_dot = i;
 			return undefined;
