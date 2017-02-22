@@ -1,0 +1,9 @@
+ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center
+}
+
+ul div {
+	margin: 8px;
+}

@@ -4,11 +4,16 @@ var scal = 30;
 var xrange = [-1, 20];
 var yrange = [-1, 14];
 
+var main, diagnostics;
 
 function setup() {
-	var canvas_div = select("#canvas")
-	var canvas = createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
-	canvas_div.child(canvas);
+	var canvas_div1 = select("#main")
+	main = createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
+	canvas_div1.child(canvas);
+
+	var canvas_div2 = select("#diagnostics")
+	diagnostics = createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
+	canvas_div2.child(diagnostics);
 	
 	colorMode(HSB);
 
