@@ -7,21 +7,21 @@ var active_dot = -1;
 var dragging = false;
 
 function Dot(c) {
-	this.pos = createVector(random(xrange[0], xrange[1]), random(yrange[0], yrange[1]));
+	this.pos = main.createVector(main.random(xrange[0], xrange[1]), main.random(yrange[0], yrange[1]));
 	this.col = c;
 	this.active = false;
 	this.current_size = inactive_size;
 
 	this.show = function() {
-		stroke(0);
-		strokeWeight(1);
+		main.stroke(0);
+		main.strokeWeight(1);
 		// Thicker, white stroke while dragging
 		if (dragging && this.active) {
-			stroke(255);
-			strokeWeight(2);
+			main.stroke(255);
+			main.strokeWeight(2);
 		}
 
-		fill(this.col);
+		main.fill(this.col);
 		
 		// Change dot size in relevant direction ...
 		if (this.active) {
@@ -32,7 +32,7 @@ function Dot(c) {
 		// ... but limit it
 		this.current_size = constrain(this.current_size, inactive_size, active_size);
 
-		ellipse(xscale(this.pos.x), yscale(this.pos.y), this.current_size, this.current_size);
+		main.ellipse(xscale(main, this.pos.x), yscale(main, this.pos.y), this.current_size, this.current_size);
 	}
 }
 
@@ -45,7 +45,7 @@ function set_active() {
 
 	// Set the first dot (if any) close to the cursor to be active
 	for (var i = 0; i < dots.length; i++) {	
-		if (dist(mouseX, mouseY, xscale(dots[i].pos.x), yscale(dots[i].pos.y)) <= inactive_size) {
+		if (dist(main.mouseX, main.mouseY, xscale(main, dots[i].pos.x), yscale(main, dots[i].pos.y)) <= inactive_size) {
 			dots[i].active = true;
 			active_dot = i;
 			return undefined;

@@ -4,77 +4,41 @@ var scal = 30;
 var xrange = [-1, 20];
 var yrange = [-1, 14];
 
-var main, diagnostics;
+var main = new p5(main_sketch, "main");
+var diagnostics = new p5(diagnostics_sketch, "diagnostics");
 
-function setup() {
-	var canvas_div1 = select("#main")
-	main = createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
-	canvas_div1.child(canvas);
-
-	var canvas_div2 = select("#diagnostics")
-	diagnostics = createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
-	canvas_div2.child(diagnostics);
-	
-	colorMode(HSB);
-
-	// Generate dots
-	for (var i = 0; i < num_points; i++) {
-		var hu = map(i, 0, num_points, 0, 360);
-		var c = color(hu, 255, 255);
-		dots.push(new Dot(c));
-	}
+function xscale(s, x) {
+	return s.map(x, s.xrange[0], s.xrange[1], 0, s.width);
 }
 
-function draw() {
-	background(0, 0, 78);
-
-	draw_axes();
-	regression_line();
-
-	if (dragging && active_dot !== -1) {
-		dots[active_dot].pos.x = xinvscale(mouseX);
-		dots[active_dot].pos.y = yinvscale(mouseY);
-	} else {
-		set_active();
-	}
-	
-	for (var i = 0; i < dots.length; i++) {
-		dots[i].show();
-	}
+function yscale(s, y) {
+	return s.map(y, s.yrange[0], s.yrange[1], s.height, 0);
 }
 
-function xscale(x) {
-	return map(x, xrange[0], xrange[1], 0, width);
+function xinvscale(s, x) {
+	return s.map(x, 0, s.width, s.xrange[0], s.xrange[1]);
 }
 
-function yscale(y) {
-	return map(y, yrange[0], yrange[1], height, 0);
+function yinvscale(s, y) {
+	return s.map(y, s.height, 0, s.yrange[0], s.yrange[1]);
 }
 
-function xinvscale(x) {
-	return map(x, 0, width, xrange[0], xrange[1]);
-}
-
-function yinvscale(y) {
-	return map(y, height, 0, yrange[0], yrange[1]);
-}
-
-function draw_axes() {
-	stroke(0, 0, 0);
-	strokeWeight(1);
+function draw_axes(s) {
+	s.stroke(0, 0, 0);
+	s.strokeWeight(1);
 
 	// x axis
-	line(xscale(xrange[0]), yscale(0), xscale(xrange[1]), yscale(0));
+	s.line(xscale(s, s.xrange[0]), yscale(s, 0), xscale(s, s.xrange[1]), yscale(s, 0));
 	// ticks
-	for (var i = Math.floor(xrange[0]); i < xrange[1]; i++) {
-		line(xscale(i), yscale(0) - 0.1 * scal, xscale(i), yscale(0) + 0.1 * scal);
+	for (var i = Math.floor(s.xrange[0]); i < s.xrange[1]; i++) {
+		s.line(xscale(s, i), yscale(s, 0) - 0.1 * scal, xscale(s, i), yscale(s, 0) + 0.1 * scal);
 	}
 
 	// y axis
-	line(xscale(0), yscale(yrange[0]), xscale(0), yscale(yrange[1]));
+	s.line(xscale(s, 0), yscale(yrange[0]), xscale(s, 0), yscale(yrange[1]));
 	// ticks
 	for (var i = Math.floor(yrange[0]); i < yrange[1]; i++) {
-		line(xscale(0) - 0.1 * scal, yscale(i), xscale(0) + 0.1 * scal, yscale(i));
+		s.line(xscale(s, 0) - 0.1 * scal, yscale(s, i), xscale(s, 0) + 0.1 * scal, yscale(s, i));
 	}
 }
 
