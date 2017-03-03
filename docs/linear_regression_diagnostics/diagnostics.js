@@ -1,14 +1,25 @@
 function diagnostics_sketch(s) {
-	var xr = xrange[1] - xrange[0];
-	s.xrange = [-xr / 2, xr / 2];
-	s.yrange = yrange;
+	var yr = (yrange[1] - yrange[0]) * 1.3;
+	s.xrange = xrange;
+	s.yrange = [-yr / 2, yr / 2];
 
-	function setup() {
+	s.setup = function() {
 		var diagnostics_div = s.select("#diagnostics")
-		diagnostics = s.createCanvas((s.xrange[1] - s.xrange[0]) * scal, (s.yrange[1] - s.yrange[0]) * scal);
+		diagnostics = s.createCanvas((xrange[1] - xrange[0]) * scal, (yrange[1] - yrange[0]) * scal);
 		diagnostics_div.child(diagnostics);
+	}
 
-		s.colorMode(HSB);
+	s.draw = function() {
+		s.background(200);
+		draw_axes(s);
+
+		s.strokeWeight(5);
+		for (var i = 0; i < num_points; i++) {
+			var residual = dots[i].pos.y - yhat(dots[i].pos.x);
+			s.stroke(dots[i].col);
+			var x_pos = xscale(s, dots[i].pos.x)
+			s.line(x_pos, s.height / 2, x_pos, yscale(s, residual));
+		}
 	}
 
 	

@@ -27,15 +27,10 @@ function regression() {
 	return [math.subset(beta, math.index(0, 0)), math.subset(beta, math.index(1, 0))];
 }
 
-function regression_line() {
-	var reg = regression();
+function regression_line(s) {
+	reg = regression();
 
-	// Associated linear function
-	function f(x) {
-		return reg[0] + reg[1] * x;
-	}
-
-	stroke(0, 0, 0);
-	strokeWeight(2);
-	line(xscale(xrange[0]), yscale(f(xrange[0])), xscale(xrange[1]), yscale(f(xrange[1])));
+	s.stroke(0, 0, 0);
+	s.strokeWeight(2);
+	s.line(xscale(s, s.xrange[0]), yscale(s, yhat(s.xrange[0])), xscale(s, s.xrange[1]), yscale(s, yhat(s.xrange[1])));
 }

@@ -1,9 +1,25 @@
-ul {
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+#plots {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center
 }
 
-ul div {
+div div {
+	margin: 8px;
+}
+
+#buttons {
+	text-align: center;
+}
+
+button {
 	margin: 8px;
 }

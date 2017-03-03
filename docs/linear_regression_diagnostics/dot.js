@@ -30,7 +30,7 @@ function Dot(c) {
 			this.current_size -= 1;
 		}
 		// ... but limit it
-		this.current_size = constrain(this.current_size, inactive_size, active_size);
+		this.current_size = main.constrain(this.current_size, inactive_size, active_size);
 
 		main.ellipse(xscale(main, this.pos.x), yscale(main, this.pos.y), this.current_size, this.current_size);
 	}
@@ -45,17 +45,10 @@ function set_active() {
 
 	// Set the first dot (if any) close to the cursor to be active
 	for (var i = 0; i < dots.length; i++) {	
-		if (dist(main.mouseX, main.mouseY, xscale(main, dots[i].pos.x), yscale(main, dots[i].pos.y)) <= inactive_size) {
+		if (main.dist(main.mouseX, main.mouseY, xscale(main, dots[i].pos.x), yscale(main, dots[i].pos.y)) <= inactive_size) {
 			dots[i].active = true;
 			active_dot = i;
 			return undefined;
 		}
 	}
-}
-
-function mouseClicked() {
-	if (active_dot === -1) {
-		dragging = false;
-	}
-	dragging = !dragging;
 }

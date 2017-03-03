@@ -3,31 +3,35 @@ function main_sketch(s) {
 	s.yrange = yrange;
 
 	s.setup = function() {
-		console.log(s);
 
 		// Set up main canvas
 		s.createCanvas((s.xrange[1] - s.xrange[0]) * scal, (s.yrange[1] - s.yrange[0]) * scal);
 		s.background(0);
-	
-		//colorMode(HSB);
+		
+		// Dot colors
+		var dot_cols = [s.color(255), s.color(128),
+			s.color(255, 0, 0), s.color(0, 255, 0), s.color(0, 0, 255),
+			s.color(255, 150, 150), s.color(150, 255, 150), s.color(150, 150, 255),
+			s.color(255, 255, 0), s.color(255, 0, 255), s.color(0, 255, 255)];
 
 		// Generate dots
 		for (var i = 0; i < num_points; i++) {
-			var hu = s.map(i, 0, num_points, 0, 360);
-			var c = s.color(hu, 255, 255);
-			dots.push(new Dot(c));
+			dots.push(new Dot(dot_cols[i]));
 		}
+
+		// Set up buttons etc.
+		gui_setup();
 	}
 
 	s.draw = function() {
-		s.background(0, 0, 78);
+		s.background(200);
 
 		draw_axes(s);
-		// regression_line();
+		regression_line(s);
 
 		if (dragging && active_dot !== -1) {
-			dots[active_dot].pos.x = constrain(xinvscale(s, s.mouseX), s.xrange[0], s.range[1]);
-			dots[active_dot].pos.y = constrain(yinvscale(s, s.mouseY), s.yrange[0], y.range[1]);
+			dots[active_dot].pos.x = s.constrain(xinvscale(s, s.mouseX), s.xrange[0], s.xrange[1]);
+			dots[active_dot].pos.y = s.constrain(yinvscale(s, s.mouseY), s.yrange[0], s.yrange[1]);
 		} else {
 			set_active();
 		}
@@ -37,4 +41,10 @@ function main_sketch(s) {
 		}
 	}
 	
+	s.mouseClicked = function() {
+		if (active_dot === -1) {
+			dragging = false;
+		}
+		dragging = !dragging;
+	}
 }
