@@ -8,17 +8,20 @@
 	<script src="../libs/math.min.js"></script>
 	
 	<script src="dot.js"></script>
+	<script src="stats.js"></script>
+	
 	<script src="main.js"></script>
 	<script src="diagnostics.js"></script>
+	
 	<script src="regression.js"></script>
-
 	<script src="sketch.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <h1>Linear regression diagnostics</h1>
-<div id = "plots">
+
+<div id="plots">
 	<div id="main">
 		<h2>Scatter plot</h2>
 	</div>
@@ -26,6 +29,12 @@
 		<h2>Residual plot</h2>
 	</div>
 </div>
+
+<div id="stats">
+	<div id="reg_line"></div>
+	<div id="means"></div>
+</div>
+
 <p>Move the points by clicking on them.</p>
 
 <div id="buttons"></div>
