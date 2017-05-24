@@ -14,13 +14,18 @@ function diagnostics_sketch(s) {
 		draw_axes(s);
 
 		s.strokeWeight(5);
+		var res = regression();
+
 		for (var i = 0; i < num_points; i++) {
-			var residual = dots[i].pos.y - yhat(dots[i].pos.x);
+			
+			if (res == undefined) {
+				var residual = 0;
+			} else {
+				var residual = dots[i].pos.y - yhat(dots[i].pos.x);
+			}
 			s.stroke(dots[i].col);
 			var x_pos = xscale(s, dots[i].pos.x)
 			s.line(x_pos, s.height / 2, x_pos, yscale(s, residual));
 		}
-	}
-
-	
+	}	
 }

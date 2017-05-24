@@ -43,7 +43,13 @@ function main_sketch(s) {
 		// Show stats
 		var reg_line_div = s.select("#reg_line");
 		var reg_coef = regression();
-		reg_line_div.html("Regression line: y = " + math.floor(reg_coef[1] * 100 + .5) / 100 + "x + " + math.floor(reg_coef[0] * 100 + .5) / 100);
+		
+		// Check for collinearity
+		if (reg_coef == undefined) {
+			reg_line_div.html("Perfect collinearity - regression not possible");
+		} else {
+			reg_line_div.html("Regression line: y = " + math.floor(reg_coef[1] * 100 + .5) / 100 + "x + " + math.floor(reg_coef[0] * 100 + .5) / 100);
+		}
 
 		var means_div = s.select("#means");
 		var means = calc_means();
