@@ -39,8 +39,25 @@ function main_sketch(s) {
 		for (var i = 0; i < dots.length; i++) {
 			dots[i].show();
 		}
+
+		// Show stats
+		var reg_line_div = s.select("#reg_line");
+		var reg_coef = regression();
+		
+		// Check for collinearity
+		if (reg_coef == undefined) {
+			reg_line_div.html("Perfect collinearity - regression not possible");
+		} else {
+			reg_line_div.html("Regression line: y = " + math.floor(reg_coef[1] * 100 + .5) / 100 + "x + " + math.floor(reg_coef[0] * 100 + .5) / 100);
+		}
+
+		var means_div = s.select("#means");
+		var means = calc_means();
+		means_div.html("Mean x value: " + math.floor(means[0] * 100 + .5) / 100 + ".   Mean y value: " + math.floor(means[1] * 100 + .5) / 100);
 	}
 	
+	// For dragging points
+
 	s.mouseClicked = function() {
 		if (active_dot === -1) {
 			dragging = false;

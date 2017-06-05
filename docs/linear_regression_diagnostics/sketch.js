@@ -48,7 +48,11 @@ function draw_axes(s) {
 
 // The fitted function
 function yhat(x) {
-	return reg[0] + reg[1] * x;
+	if (reg == undefined) {
+		return 0;
+	} else {
+		return reg[0] + reg[1] * x;
+	}
 }
 
 // All buttons etc. goes here:

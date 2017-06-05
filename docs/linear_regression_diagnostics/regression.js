@@ -21,6 +21,11 @@ function regression() {
 	// Use math.js to solve the normal equations
 	var xt = math.transpose(x);
 	var xtx = math.multiply(xt, x);
+	
+	// Check for perfect collinearity
+	if (math.det(xtx) == 0) {
+		return undefined;
+	}
 	var inverse = math.inv(xtx);
 	var beta = math.multiply(math.multiply(inverse, xt), y);
 
@@ -32,5 +37,11 @@ function regression_line(s) {
 
 	s.stroke(0, 0, 0);
 	s.strokeWeight(2);
-	s.line(xscale(s, s.xrange[0]), yscale(s, yhat(s.xrange[0])), xscale(s, s.xrange[1]), yscale(s, yhat(s.xrange[1])));
+
+	if (reg == undefined) {
+		var xkord = xscale(s, dots[0].pos.x)
+		s.line(xkord, 0, xkord, s.height);
+	} else {
+		s.line(xscale(s, s.xrange[0]), yscale(s, yhat(s.xrange[0])), xscale(s, s.xrange[1]), yscale(s, yhat(s.xrange[1])));
+	}
 }

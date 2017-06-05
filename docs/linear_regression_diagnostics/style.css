@@ -1,12 +1,8 @@
-h1 {
+h1, h2, p {
 	text-align: center;
 }
 
-h2 {
-	text-align: center;
-}
-
-#plots {
+#plots, #stats {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center
