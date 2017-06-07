@@ -14,10 +14,20 @@
 	<script src="draw_prediction.js"></script>
 </head>
 <body>
-	<h1>Learning XOR with a neural net</h1>
-	<div id="canvas"></div>
+	<center>
+		<h1>Learning XOR with a neural net</h1>
+		<div id="canvas"></div>
 	
-	<div id="learning_rate">Learning rate: </div>
-	<div id="prediction_size">Prediction window size: </div>
+		<div id="learning_rate">Learning rate: </div>
+		<div id="prediction_size">Prediction window size: </div>
+		<br>
+		<div id="reset"></div>
+		<br>
+		<div>
+		<p>Activations: White is zero, black is one.</p>
+		<p>Weights and biases: Red are positive, blue are negative.</p>
+		<p>The active data point, for which the activations are shown, is green.</p>
+		<p>Press 'x' and 'y' to toggle active data point</p></div>
+	</center>
 </body>
 </html>
