@@ -4,7 +4,7 @@ function draw_prediction() {
 
 	for (var i = 0; i < 40; i++) {
 		for (var j = 0; j < 40; j++) {
-			var pred = predict(map(i - 0.5, 0, 40, -sz, 1 + sz), map(j - 0.5, 0, 40, 1 + sz, -sz));
+			var pred = predict(map(i + 0.5, 0, 40, -sz, 1 + sz), map(j + 0.5, 0, 40, 1 + sz, -sz));
 			fill(map(pred, 0, 1, 0, 255));
 			rect(map(i, 0, 40, 300, 500), map(j, 0, 40, 225, 25), 5, 5);
 		}
