@@ -11,31 +11,31 @@ function draw_network() {
 	// Draw weights
 	strokeWeight(8);
 	
-	weight_color(math.subset(Theta1, math.index(1, 2)));
+	weight_color(math.subset(Theta1, math.index(0, 1)));
 	line(50, 100, 150, 100);
 
-	weight_color(math.subset(Theta1, math.index(0, 2)));
+	weight_color(math.subset(Theta1, math.index(1, 1)));
 	line(50, 100, 150, 200);
 
-	weight_color(math.subset(Theta1, math.index(1, 1)));
+	weight_color(math.subset(Theta1, math.index(0, 2)));
 	line(50, 200, 150, 100);
 
-	weight_color(math.subset(Theta1, math.index(0, 1)));
+	weight_color(math.subset(Theta1, math.index(1, 2)));
 	line(50, 200, 150, 200);
 
-	weight_color(math.subset(Theta2, math.index(0, 2)));
+	weight_color(math.subset(Theta2, math.index(0, 1)));
 	line(150, 100, 250, 150);
 
-	weight_color(math.subset(Theta2, math.index(0, 1)));
-	line(150, 200, 250, 150);	
+	weight_color(math.subset(Theta2, math.index(0, 2)));
+	line(150, 200, 250, 150);
 
 	// Draw biases
 	strokeWeight(6);
 
-	weight_color(math.subset(Theta1, math.index(1, 0)));
+	weight_color(math.subset(Theta1, math.index(0, 0)));
 	line(150, 50, 150, 100);
 
-	weight_color(math.subset(Theta1, math.index(0, 0)));
+	weight_color(math.subset(Theta1, math.index(1, 0)));
 	line(150, 150, 150, 200);
 
 	weight_color(math.subset(Theta2, math.index(0, 0)));
@@ -45,16 +45,16 @@ function draw_network() {
 	strokeWeight(2);
 	stroke(0, 255, 0);
 	
-	neuron_color(X.subset(math.index(2, active)));
+	neuron_color(X.subset(math.index(1, active)));
 	ellipse(50, 100, 40, 40);
 
-	neuron_color(X.subset(math.index(1, active)));
+	neuron_color(X.subset(math.index(2, active)));
 	ellipse(50, 200, 40, 40);
 
-	neuron_color(A.subset(math.index(1, active)));
+	neuron_color(A.subset(math.index(0, active)));
 	ellipse(150, 100, 40, 40);
 
-	neuron_color(A.subset(math.index(0, active)));
+	neuron_color(A.subset(math.index(1, active)));
 	ellipse(150, 200, 40, 40);
 
 	neuron_color(H.subset(math.index(0, active)));
@@ -64,8 +64,8 @@ function draw_network() {
 	fill(255);
 	stroke(51);
 	textSize(24);
-	text("y", 10, 105);
-	text("x", 10, 205);
+	text("x", 10, 105);
+	text("y", 10, 205);
 }
 
 function neuron_color(c) {
